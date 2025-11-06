@@ -141,12 +141,13 @@
     <script type="module">
         import { supabase, updateCartCount, getCurrentUser, updateNavbar } from './js/supabase.js';
 
-        // Update cart count and navbar on load
+        // Update cart count on load
         updateCartCount();
-        updateNavbar();
 
-        // Check if user is logged in
+        // Check if user is logged in and update navbar
         (async () => {
+            await updateNavbar();
+            
             const user = await getCurrentUser();
             const searchOptionsSection = document.getElementById('search-options');
             const pageTitle = document.getElementById('page-title');

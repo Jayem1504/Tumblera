@@ -233,10 +233,11 @@ checkoutForm.addEventListener('submit', async function(e) {
 // Initialize
 updateCartCount();
 renderCartItems();
-updateNavbar();
 
-// Auto-fill email if user is logged in
+// Auto-fill email and update navbar for logged-in users
 (async () => {
+    await updateNavbar();
+    
     const user = await getCurrentUser();
     if (user) {
         const emailInput = document.getElementById('customer-email');

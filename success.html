@@ -173,7 +173,9 @@
     <script type="module">
         // Update navbar for logged-in users
         import { updateNavbar } from './js/supabase.js';
-        updateNavbar();
+        (async () => {
+            await updateNavbar();
+        })();
     </script>
 </body>
 </html>
