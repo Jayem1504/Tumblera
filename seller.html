@@ -179,6 +179,8 @@
 
         // Load orders
         async function loadOrders() {
+            console.log('📦 Loading orders...');
+            
             const loadingState = document.getElementById('loading-state');
             const emptyState = document.getElementById('empty-state');
             const ordersContainer = document.getElementById('orders-container');
@@ -189,13 +191,16 @@
             
             const result = await getAllOrders();
             
+            console.log('📦 getAllOrders result:', result);
+            
             if (result.success) {
                 allOrders = result.orders;
                 filteredOrders = allOrders;
+                console.log(`✅ Loaded ${allOrders.length} orders`);
                 updateStats();
                 renderOrders();
             } else {
-                console.error('Failed to load orders:', result.error);
+                console.error('❌ Failed to load orders:', result.error);
                 loadingState.classList.add('hidden');
                 emptyState.classList.remove('hidden');
             }
@@ -251,8 +256,8 @@
                             <div class="flex items-center gap-4">
                                 <div class="text-right">
                                     <p class="text-sm text-gray-500">Total</p>
-                                    <p class="text-2xl font-bold text-blue-600">$${order.total.toFixed(2)}</p>
-                                    <p class="text-xs text-gray-500">${JSON.parse(order.items).length} item(s)</p>
+                                    <p class="text-2xl font-bold text-blue-600">$${order.total_amount ? order.total_amount.toFixed(2) : '0.00'}</p>
+                                    <p class="text-xs text-gray-500">${JSON.parse(order.items || '[]').length} item(s)</p>
                                 </div>
                                 <div class="flex flex-col gap-2">
                                     <button onclick="viewOrderDetail('${order.id}')" 
@@ -377,17 +382,9 @@
                     
                     <div class="border-t pt-4">
                         <div class="space-y-2">
-                            <div class="flex justify-between">
-                                <span>Subtotal:</span>
-                                <span>$${order.subtotal.toFixed(2)}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Shipping:</span>
-                                <span>$${order.shipping.toFixed(2)}</span>
-                            </div>
-                            <div class="flex justify-between text-lg font-bold border-t pt-2">
+                            <div class="flex justify-between text-lg font-bold">
                                 <span>Total:</span>
-                                <span class="text-blue-600">$${order.total.toFixed(2)}</span>
+                                <span class="text-blue-600">$${order.total_amount ? order.total_amount.toFixed(2) : '0.00'}</span>
                             </div>
                         </div>
                     </div>

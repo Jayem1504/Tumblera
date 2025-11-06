@@ -167,36 +167,48 @@ export async function getUserOrders() {
     }
 }
 
-// Get all orders (seller only)
+// Get all orders (seller only - simplified for hardcoded seller)
 export async function getAllOrders() {
     try {
-        const user = await getCurrentUser();
-        if (!user) throw new Error('Not authenticated');
+        // Check if seller is logged in via localStorage (our hardcoded seller)
+        const isSellerLoggedIn = localStorage.getItem('isSellerLoggedIn') === 'true';
         
-        const isSellerUser = await isSeller(user.id);
-        if (!isSellerUser) throw new Error('Unauthorized');
+        if (!isSellerLoggedIn) {
+            console.log('❌ Not logged in as seller');
+            throw new Error('Seller login required');
+        }
+        
+        console.log('✅ Seller authenticated, fetching all orders...');
         
         const { data, error } = await supabase
             .from('orders')
             .select('*')
             .order('created_at', { ascending: false });
         
-        if (error) throw error;
+        if (error) {
+            console.error('❌ Supabase query error:', error);
+            throw error;
+        }
+        
+        console.log(`✅ Found ${data.length} order(s):`, data);
         return { success: true, orders: data };
     } catch (error) {
-        console.error('Get all orders error:', error);
-        return { success: false, error: error.message };
+        console.error('❌ Get all orders error:', error);
+        return { success: false, error: error.message, orders: [] };
     }
 }
 
-// Update order status (seller only)
+// Update order status (seller only - simplified for hardcoded seller)
 export async function updateOrderStatus(orderId, status) {
     try {
-        const user = await getCurrentUser();
-        if (!user) throw new Error('Not authenticated');
+        // Check if seller is logged in via localStorage
+        const isSellerLoggedIn = localStorage.getItem('isSellerLoggedIn') === 'true';
         
-        const isSellerUser = await isSeller(user.id);
-        if (!isSellerUser) throw new Error('Unauthorized');
+        if (!isSellerLoggedIn) {
+            throw new Error('Seller login required');
+        }
+        
+        console.log(`Updating order ${orderId} to status: ${status}`);
         
         const { data, error } = await supabase
             .from('orders')
@@ -204,10 +216,15 @@ export async function updateOrderStatus(orderId, status) {
             .eq('id', orderId)
             .select();
         
-        if (error) throw error;
+        if (error) {
+            console.error('Update error:', error);
+            throw error;
+        }
+        
+        console.log('✅ Order updated successfully:', data[0]);
         return { success: true, order: data[0] };
     } catch (error) {
-        console.error('Update order status error:', error);
+        console.error('❌ Update order status error:', error);
         return { success: false, error: error.message };
     }
 }
