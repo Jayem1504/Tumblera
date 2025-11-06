@@ -1,5 +1,5 @@
 // Cart and checkout functionality with Supabase integration
-import { getCurrentUser } from './supabase.js';
+import { getCurrentUser, updateNavbar } from './supabase.js';
 
 // DOM elements
 const cartItemsContainer = document.getElementById('cart-items');
@@ -233,6 +233,7 @@ checkoutForm.addEventListener('submit', async function(e) {
 // Initialize
 updateCartCount();
 renderCartItems();
+updateNavbar();
 
 // Auto-fill email if user is logged in
 (async () => {

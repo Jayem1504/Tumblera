@@ -388,8 +388,8 @@ export async function updateNavbar() {
     if (authLinks) {
         if (user) {
             authLinks.innerHTML = `
-                <button id="logout-btn" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                <button id="logout-btn" class="text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <i class="fas fa-sign-out-alt"></i><span class="hidden sm:inline ml-1"> Logout</span>
                 </button>
             `;
             
@@ -400,23 +400,13 @@ export async function updateNavbar() {
                     window.location.href = '/index.html';
                 }
             });
-            
-            // Update "Track Orders" link text to "My Orders" for logged-in users
-            const ordersLinks = document.querySelectorAll('a[href="orders.html"]');
-            ordersLinks.forEach(link => {
-                // Update the full text content, preserving the icon
-                const innerHTML = link.innerHTML;
-                if (innerHTML.includes('Track')) {
-                    link.innerHTML = innerHTML.replace(/Track Orders?/g, 'My Orders').replace(/Track/g, 'My Orders');
-                }
-            });
         } else {
             authLinks.innerHTML = `
-                <a href="login.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">
-                    <i class="fas fa-sign-in-alt"></i> Login
+                <a href="login.html" class="text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <i class="fas fa-sign-in-alt"></i><span class="hidden sm:inline ml-1"> Login</span>
                 </a>
-                <a href="signup.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">
-                    <i class="fas fa-user-plus"></i> Sign Up
+                <a href="signup.html" class="text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <i class="fas fa-user-plus"></i><span class="hidden sm:inline ml-1"> Sign Up</span>
                 </a>
             `;
         }

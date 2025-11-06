@@ -139,10 +139,11 @@
     </footer>
 
     <script type="module">
-        import { supabase, updateCartCount, getCurrentUser } from './js/supabase.js';
+        import { supabase, updateCartCount, getCurrentUser, updateNavbar } from './js/supabase.js';
 
-        // Update cart count on load
+        // Update cart count and navbar on load
         updateCartCount();
+        updateNavbar();
 
         // Check if user is logged in
         (async () => {
@@ -155,8 +156,8 @@
                 // User is logged in - hide search options and auto-load their orders
                 console.log('User logged in:', user.email);
                 
-                // Update header
-                pageTitle.textContent = 'My Orders';
+                // Keep the title as "Track Orders"
+                pageTitle.textContent = 'Track Orders';
                 pageSubtitle.textContent = 'Your order history and tracking information';
                 
                 // Hide search options

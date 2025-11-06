@@ -170,5 +170,10 @@
             sessionStorage.removeItem('lastOrder');
         });
     </script>
+    <script type="module">
+        // Update navbar for logged-in users
+        import { updateNavbar } from './js/supabase.js';
+        updateNavbar();
+    </script>
 </body>
 </html>
