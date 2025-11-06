@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Your Tumbler - Tumblera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-mug-hot text-blue-600 text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-gray-800">Tumblera</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Home</a>
+                    <a href="customize.html" class="text-blue-600 px-3 py-2 font-medium">Customize</a>
+                    <a href="cart.html" class="relative text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">Customize Your Tumbler</h1>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Customization Controls -->
+            <div class="space-y-6">
+                <!-- Text Customization -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-text text-blue-600 mr-2"></i>
+                        Add Text
+                    </h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Your Text</label>
+                            <input type="text" id="custom-text" placeholder="Enter your text here..." 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Font</label>
+                                <select id="font-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="Arial">Arial</option>
+                                    <option value="Helvetica">Helvetica</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                    <option value="Courier New">Courier New</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Comic Sans MS">Comic Sans MS</option>
+                                    <option value="Impact">Impact</option>
+                                    <option value="Brush Script MT">Brush Script MT</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Text Size</label>
+                                <input type="number" id="font-size" value="24" min="12" max="72" 
+                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Text Color</label>
+                            <div class="flex space-x-2">
+                                <input type="color" id="text-color" value="#000000" 
+                                       class="w-16 h-10 border border-gray-300 rounded cursor-pointer">
+                                <input type="text" id="text-color-hex" value="#000000" 
+                                       class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Upload -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-image text-blue-600 mr-2"></i>
+                        Upload Image/Logo
+                    </h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Choose an image</label>
+                            <input type="file" id="image-upload" accept="image/*" 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <button id="remove-image" class="w-full bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition hidden">
+                            <i class="fas fa-trash mr-2"></i>Remove Image
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tumbler Color -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-fill-drip text-blue-600 mr-2"></i>
+                        Tumbler Color
+                    </h2>
+                    <div class="grid grid-cols-4 gap-3">
+                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-4 border-blue-600" style="background-color: #ffffff;" data-color="#ffffff"></button>
+                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #000000;" data-color="#000000"></button>
+                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #3b82f6;" data-color="#3b82f6"></button>
+                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #ef4444;" data-color="#ef4444"></button>
+                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #10b981;" data-color="#10b981"></button>
+                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #f59e0b;" data-color="#f59e0b"></button>
+                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #8b5cf6;" data-color="#8b5cf6"></button>
+                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #ec4899;" data-color="#ec4899"></button>
+                    </div>
+                </div>
+
+                <!-- Price and Add to Cart -->
+                <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-lg shadow-md text-white">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg">Price:</span>
+                        <span class="text-3xl font-bold">$24.99</span>
+                    </div>
+                    <button id="add-to-cart" class="w-full bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                    <button id="reset-design" class="w-full mt-3 bg-transparent border-2 border-white text-white px-6 py-2 rounded-lg hover:bg-white hover:text-blue-600 transition">
+                        <i class="fas fa-redo mr-2"></i>Reset Design
+                    </button>
+                </div>
+            </div>
+
+            <!-- Preview -->
+            <div class="lg:sticky lg:top-24">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-eye text-blue-600 mr-2"></i>
+                        Live Preview
+                    </h2>
+                    <div class="relative bg-gray-100 rounded-lg p-8 flex items-center justify-center" style="min-height: 500px;">
+                        <!-- Tumbler Preview -->
+                        <div id="tumbler-preview" class="relative" style="width: 200px; height: 400px; background-color: #ffffff; border-radius: 10px 10px 30px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <!-- Custom Image -->
+                            <img id="preview-image" src="" alt="" class="absolute w-32 h-32 object-contain hidden" style="top: 30%; left: 50%; transform: translateX(-50%);">
+                            
+                            <!-- Custom Text -->
+                            <div id="preview-text" class="absolute text-center px-4" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; word-wrap: break-word;">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4 text-center">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        This is a representation of how your tumbler will look
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Tumblera. All rights reserved.</p>
+            <p class="text-gray-400 text-sm mt-2">Custom tumblers made with love</p>
+        </div>
+    </footer>
+
+    <script src="js/customize.js"></script>
+</body>
+</html>

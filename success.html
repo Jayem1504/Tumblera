@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success - Tumblera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-mug-hot text-blue-600 text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-gray-800">Tumblera</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Home</a>
+                    <a href="customize.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Customize</a>
+                    <a href="cart.html" class="relative text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Content -->
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-lg shadow-lg p-8 text-center">
+            <!-- Success Icon -->
+            <div class="mb-6">
+                <div class="mx-auto w-24 h-24 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-check-circle text-green-500 text-5xl"></i>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">Order Placed Successfully!</h1>
+            <p class="text-lg text-gray-600 mb-2">Thank you for your order!</p>
+            <p class="text-gray-500 mb-8">We've received your order and will start preparing your custom tumbler(s) right away.</p>
+
+            <!-- Order Details -->
+            <div class="bg-gray-50 rounded-lg p-6 mb-8 text-left">
+                <h2 class="text-xl font-semibold mb-4 text-center">Order Summary</h2>
+                <div class="space-y-2">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Order Number:</span>
+                        <span id="order-number" class="font-semibold text-blue-600">Loading...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Order Date:</span>
+                        <span id="order-date" class="font-semibold">Loading...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Total Items:</span>
+                        <span id="total-items" class="font-semibold">Loading...</span>
+                    </div>
+                    <div class="flex justify-between border-t pt-2 mt-2">
+                        <span class="text-gray-600 text-lg">Total Amount:</span>
+                        <span id="total-amount" class="font-bold text-lg text-blue-600">Loading...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Payment Method:</span>
+                        <span class="font-semibold text-yellow-600">
+                            <i class="fas fa-hand-holding-usd mr-1"></i>Cash on Delivery
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8 text-left">
+                <h3 class="font-semibold text-blue-900 mb-3">What happens next?</h3>
+                <ul class="space-y-2 text-sm text-blue-800">
+                    <li class="flex items-start">
+                        <i class="fas fa-envelope text-blue-600 mt-1 mr-3"></i>
+                        <span>You'll receive a confirmation email with your order details</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-paint-brush text-blue-600 mt-1 mr-3"></i>
+                        <span>We'll start customizing your tumbler(s) according to your design</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-shipping-fast text-blue-600 mt-1 mr-3"></i>
+                        <span>Your order will be delivered within 5-7 business days</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-money-bill-wave text-blue-600 mt-1 mr-3"></i>
+                        <span>Pay cash when you receive your order</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
+                    <i class="fas fa-home mr-2"></i>Back to Home
+                </a>
+                <a href="customize.html" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition">
+                    <i class="fas fa-plus mr-2"></i>Order Another
+                </a>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="mt-8 pt-8 border-t text-sm text-gray-500">
+                <p>Need help with your order? Have questions?</p>
+                <p class="mt-2">Check your email for order confirmation and tracking details.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Tumblera. All rights reserved.</p>
+            <p class="text-gray-400 text-sm mt-2">Custom tumblers made with love</p>
+        </div>
+    </footer>
+
+    <script>
+        // Generate order number
+        function generateOrderNumber() {
+            const date = new Date();
+            const random = Math.floor(Math.random() * 10000);
+            return `TUM-${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}-${String(random).padStart(4, '0')}`;
+        }
+
+        // Load order details from session storage
+        window.addEventListener('DOMContentLoaded', function() {
+            const orderData = JSON.parse(sessionStorage.getItem('lastOrder') || '{}');
+            
+            // Display order number
+            document.getElementById('order-number').textContent = generateOrderNumber();
+            
+            // Display order date
+            const orderDate = new Date();
+            document.getElementById('order-date').textContent = orderDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Display total items
+            document.getElementById('total-items').textContent = orderData.itemCount || 0;
+            
+            // Display total amount
+            document.getElementById('total-amount').textContent = orderData.total || '$0.00';
+            
+            // Update cart count
+            const cart = JSON.parse(localStorage.getItem('tumblerCart') || '[]');
+            document.getElementById('cart-count').textContent = cart.length;
+            
+            // Clear session storage after displaying
+            sessionStorage.removeItem('lastOrder');
+        });
+    </script>
+</body>
+</html>

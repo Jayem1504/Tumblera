@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tumblera - Custom Tumblers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-mug-hot text-blue-600 text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-gray-800">Tumblera</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Home</a>
+                    <a href="customize.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Customize</a>
+                    <a href="cart.html" class="relative text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold mb-4">Design Your Perfect Tumbler</h1>
+            <p class="text-xl mb-8">Personalize your tumbler with custom text, colors, and images</p>
+            <a href="customize.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition inline-block">
+                Start Customizing
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Why Choose Tumblera?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fully Customizable</h3>
+                    <p class="text-gray-600">Add your own text, choose fonts, colors, and upload images to make it uniquely yours.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Real-Time Preview</h3>
+                    <p class="text-gray-600">See your design come to life instantly with our live preview feature.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Cash on Delivery</h3>
+                    <p class="text-gray-600">Pay when you receive your custom tumbler. No advance payment needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Info Section -->
+    <section class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Premium Quality Tumblers</h2>
+                    <p class="text-gray-600 mb-4">Our tumblers are made from high-quality stainless steel, keeping your drinks hot or cold for hours. Each tumbler is carefully crafted to ensure your custom design looks perfect.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Double-wall insulation</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>20oz capacity</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>BPA-free materials</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Dishwasher safe</li>
+                    </ul>
+                    <div class="mt-6">
+                        <p class="text-3xl font-bold text-blue-600">$24.99</p>
+                        <p class="text-gray-500 text-sm">Price per tumbler</p>
+                    </div>
+                </div>
+                <div class="bg-gray-200 rounded-lg p-8 flex items-center justify-center" style="height: 400px;">
+                    <i class="fas fa-mug-hot text-gray-400 text-9xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Create Your Tumbler?</h2>
+            <p class="text-xl mb-8">Start designing now and get your personalized tumbler delivered to your door!</p>
+            <a href="customize.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition inline-block">
+                Customize Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Tumblera. All rights reserved.</p>
+            <p class="text-gray-400 text-sm mt-2">Custom tumblers made with love</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update cart count on page load
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('tumblerCart') || '[]');
+            const cartCount = document.getElementById('cart-count');
+            if (cartCount) {
+                cartCount.textContent = cart.length;
+            }
+        }
+        
+        updateCartCount();
+    </script>
+</body>
+</html>
