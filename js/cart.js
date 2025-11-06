@@ -170,22 +170,27 @@ checkoutForm.addEventListener('submit', async function(e) {
         // Import Supabase functions
         const { saveOrder } = await import('./supabase.js');
         
+        console.log('Preparing order data...', formData);
+        
         // Save order to Supabase
         const orderData = {
             name: formData.name,
             email: formData.email,
             phone: formData.phone,
             address: formData.address,
-            notes: formData.notes,
-            items: JSON.stringify(cart),
-            subtotal: subtotal,
-            shipping: SHIPPING_COST,
+            items: JSON.stringify(cart),  // Convert to JSON string
             total: total
         };
         
+        console.log('Sending order to Supabase:', orderData);
+        
         const result = await saveOrder(orderData);
         
+        console.log('Supabase response:', result);
+        
         if (result.success) {
+            console.log('✅ Order saved successfully!', result.order);
+            
             // Store order info in session storage for success page
             sessionStorage.setItem('lastOrder', JSON.stringify({
                 itemCount: cart.length,
@@ -200,47 +205,27 @@ checkoutForm.addEventListener('submit', async function(e) {
             // Redirect to success page
             window.location.href = 'success.html';
         } else {
+            console.error('❌ Order save failed:', result.error);
             throw new Error(result.error || 'Failed to save order');
         }
         
     } catch (error) {
-        console.error('Error submitting order:', error);
+        console.error('❌ Error submitting order:', error);
         
-        // Show error message but allow fallback
-        const useLocalMode = confirm(
-            'Unable to connect to database. Would you like to proceed in offline mode?\n\n' +
-            'Your order will be saved locally and you can contact us directly to complete it.'
+        // Show detailed error in alert
+        alert(
+            '⚠️ Order Submission Error\n\n' +
+            'Error: ' + error.message + '\n\n' +
+            'Please check the browser console (F12) for details.\n\n' +
+            'Common fixes:\n' +
+            '1. Check your Supabase database setup\n' +
+            '2. Verify Row Level Security policies\n' +
+            '3. See FIX_ORDERS.md for detailed instructions'
         );
         
-        if (useLocalMode) {
-            // Store order locally for reference
-            const localOrders = JSON.parse(localStorage.getItem('localOrders') || '[]');
-            localOrders.push({
-                ...formData,
-                items: cart,
-                subtotal,
-                total,
-                timestamp: new Date().toISOString()
-            });
-            localStorage.setItem('localOrders', JSON.stringify(localOrders));
-            
-            // Store info for success page
-            sessionStorage.setItem('lastOrder', JSON.stringify({
-                itemCount: cart.length,
-                total: `$${total.toFixed(2)}`,
-                customerName: formData.name,
-                offlineMode: true
-            }));
-            
-            // Clear cart
-            localStorage.removeItem('tumblerCart');
-            
-            // Redirect to success page
-            window.location.href = 'success.html';
-        } else {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalText;
-        }
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
     }
 });
 

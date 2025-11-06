@@ -114,28 +114,32 @@ export async function isSeller(userId = null) {
 // Save order to database
 export async function saveOrder(orderData) {
     try {
+        // Allow guest checkout - user_id can be null
         const user = await getCurrentUser();
+        
+        console.log('Saving order to Supabase...', orderData);
         
         const { data, error } = await supabase
             .from('orders')
             .insert([{
-                user_id: user?.id || null,
+                user_id: user?.id || null,  // Allow null for guest checkout
                 customer_name: orderData.name,
                 customer_email: orderData.email,
                 customer_phone: orderData.phone,
                 customer_address: orderData.address,
-                customer_notes: orderData.notes,
-                items: orderData.items,
-                subtotal: orderData.subtotal,
-                shipping: orderData.shipping,
-                total: orderData.total,
+                items: orderData.items,  // This should be a JSON string
+                total_amount: orderData.total,
                 status: 'pending',
-                payment_method: 'cash_on_delivery',
                 created_at: new Date().toISOString()
             }])
             .select();
         
-        if (error) throw error;
+        if (error) {
+            console.error('Supabase insert error:', error);
+            throw error;
+        }
+        
+        console.log('Order saved successfully:', data);
         return { success: true, order: data[0] };
     } catch (error) {
         console.error('Save order error:', error);
