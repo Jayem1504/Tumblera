@@ -400,6 +400,22 @@ export async function updateNavbar() {
                     window.location.href = '/index.html';
                 }
             });
+            
+            // Update "Track Orders" to "My Orders" for logged-in users
+            const ordersLinks = document.querySelectorAll('a[href="orders.html"]');
+            ordersLinks.forEach(link => {
+                const textNode = Array.from(link.childNodes).find(node => node.nodeType === 3);
+                if (textNode) {
+                    textNode.textContent = textNode.textContent.replace('Track', 'My Orders');
+                }
+                // Also update spans that contain the text
+                const spans = link.querySelectorAll('span');
+                spans.forEach(span => {
+                    if (span.textContent.includes('Track')) {
+                        span.textContent = span.textContent.replace('Track', 'My Orders');
+                    }
+                });
+            });
         } else {
             authLinks.innerHTML = `
                 <a href="login.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">

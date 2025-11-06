@@ -1,4 +1,5 @@
 // Cart and checkout functionality with Supabase integration
+import { getCurrentUser } from './supabase.js';
 
 // DOM elements
 const cartItemsContainer = document.getElementById('cart-items');
@@ -232,3 +233,17 @@ checkoutForm.addEventListener('submit', async function(e) {
 // Initialize
 updateCartCount();
 renderCartItems();
+
+// Auto-fill email if user is logged in
+(async () => {
+    const user = await getCurrentUser();
+    if (user) {
+        const emailInput = document.getElementById('customer-email');
+        if (emailInput) {
+            emailInput.value = user.email;
+            // Make it read-only for logged-in users
+            emailInput.readOnly = true;
+            emailInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+        }
+    }
+})();

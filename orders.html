@@ -41,12 +41,12 @@
     <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-8">
         <!-- Header -->
         <div class="mb-6 sm:mb-8">
-            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Track Orders</h1>
-            <p class="text-sm sm:text-base text-gray-600">Track your custom tumbler orders</p>
+            <h1 id="page-title" class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Track Orders</h1>
+            <p id="page-subtitle" class="text-sm sm:text-base text-gray-600">Track your custom tumbler orders</p>
         </div>
 
         <!-- Search Options -->
-        <div class="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6 sm:mb-8">
+        <div id="search-options" class="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6 sm:mb-8">
             <div class="flex justify-center mb-4 sm:mb-6 overflow-x-auto">
                 <div class="inline-flex rounded-lg border border-gray-300 p-1">
                     <button id="tab-email" onclick="switchTab('email')" class="px-3 sm:px-6 py-2 rounded-lg font-medium transition bg-blue-600 text-white text-sm sm:text-base whitespace-nowrap">
@@ -142,14 +142,35 @@
         // Check if user is logged in
         (async () => {
             const user = await getCurrentUser();
+            const searchOptionsSection = document.getElementById('search-options');
+            const pageTitle = document.getElementById('page-title');
+            const pageSubtitle = document.getElementById('page-subtitle');
+            
             if (user) {
-                // User is logged in - auto-load their orders by email
+                // User is logged in - hide search options and auto-load their orders
                 console.log('User logged in:', user.email);
+                
+                // Update header
+                pageTitle.textContent = 'My Orders';
+                pageSubtitle.textContent = 'Your order history and tracking information';
+                
+                // Hide search options
+                if (searchOptionsSection) {
+                    searchOptionsSection.style.display = 'none';
+                }
+                
                 document.getElementById('email-input').value = user.email;
                 // Auto-search their orders
                 await searchByEmail();
             } else {
-                // Not logged in - check for saved email
+                // Not logged in - show search options
+                pageTitle.textContent = 'Track Orders';
+                pageSubtitle.textContent = 'Track your custom tumbler orders';
+                
+                if (searchOptionsSection) {
+                    searchOptionsSection.style.display = 'block';
+                }
+                // Check for saved email
                 const savedEmail = localStorage.getItem('customerEmail');
                 if (savedEmail) {
                     document.getElementById('email-input').value = savedEmail;
