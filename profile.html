@@ -129,7 +129,7 @@
     </footer>
 
     <script type="module">
-        import { getCurrentUser, updateNavbar, updateCartCount, getUserProfile, saveUserProfile } from './js/supabase.js';
+        import { getCurrentUser, updateNavbar, updateCartCount } from './js/supabase.js';
 
         // Update cart count and navbar
         updateCartCount();
@@ -150,65 +150,41 @@
             const profileName = document.getElementById('profile-name');
             const profilePhone = document.getElementById('profile-phone');
             const profileAddress = document.getElementById('profile-address');
-            const saveStatus = document.getElementById('save-status');
 
             // Set email
             profileEmail.value = user.email;
 
-            // Load saved profile data from database
-            saveStatus.innerHTML = '<span class="text-gray-600"><i class="fas fa-spinner fa-spin mr-1"></i>Loading profile...</span>';
+            // Load saved profile data from localStorage
+            const savedProfile = JSON.parse(localStorage.getItem(`profile_${user.email}`) || '{}');
             
-            const profileResult = await getUserProfile(user.id);
-            
-            if (profileResult.success && profileResult.profile) {
-                profileName.value = profileResult.profile.name || '';
-                profilePhone.value = profileResult.profile.phone || '';
-                profileAddress.value = profileResult.profile.address || '';
-                saveStatus.innerHTML = '';
-            } else {
-                // No profile yet, clear fields
-                profileName.value = '';
-                profilePhone.value = '';
-                profileAddress.value = '';
-                saveStatus.innerHTML = '';
-            }
+            profileName.value = savedProfile.name || '';
+            profilePhone.value = savedProfile.phone || '';
+            profileAddress.value = savedProfile.address || '';
 
             // Handle form submission
             const profileForm = document.getElementById('profile-form');
             const saveBtn = document.getElementById('save-btn');
+            const saveStatus = document.getElementById('save-status');
 
-            profileForm.addEventListener('submit', async (e) => {
+            profileForm.addEventListener('submit', (e) => {
                 e.preventDefault();
 
-                // Disable button and show loading
-                saveBtn.disabled = true;
-                saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
-                saveStatus.innerHTML = '';
-
-                // Save profile data to database
+                // Save profile data
                 const profileData = {
+                    email: user.email,
                     name: profileName.value.trim(),
                     phone: profilePhone.value.trim(),
                     address: profileAddress.value.trim()
                 };
 
-                const result = await saveUserProfile(user.id, profileData);
+                localStorage.setItem(`profile_${user.email}`, JSON.stringify(profileData));
 
-                // Re-enable button
-                saveBtn.disabled = false;
-                saveBtn.innerHTML = '<i class="fas fa-save mr-2"></i>Save Changes';
-
-                if (result.success) {
-                    // Show success message
-                    saveStatus.innerHTML = '<span class="text-green-600"><i class="fas fa-check-circle mr-1"></i>Profile saved successfully!</span>';
-                    
-                    setTimeout(() => {
-                        saveStatus.innerHTML = '';
-                    }, 3000);
-                } else {
-                    // Show error message
-                    saveStatus.innerHTML = '<span class="text-red-600"><i class="fas fa-exclamation-circle mr-1"></i>Failed to save: ' + result.error + '</span>';
-                }
+                // Show success message
+                saveStatus.innerHTML = '<span class="text-green-600"><i class="fas fa-check-circle mr-1"></i>Profile saved successfully!</span>';
+                
+                setTimeout(() => {
+                    saveStatus.innerHTML = '';
+                }, 3000);
             });
         })();
     </script>
