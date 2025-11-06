@@ -1,5 +1,5 @@
 // Cart and checkout functionality with Supabase integration
-import { getCurrentUser, updateNavbar, getUserProfile } from './supabase.js';
+import { getCurrentUser, updateNavbar } from './supabase.js';
 
 // DOM elements
 const cartItemsContainer = document.getElementById('cart-items');
@@ -241,9 +241,8 @@ renderCartItems();
     
     const user = await getCurrentUser();
     if (user) {
-        // Load saved profile data from database
-        const profileResult = await getUserProfile(user.id);
-        const profile = profileResult.success && profileResult.profile ? profileResult.profile : {};
+        // Load saved profile data
+        const savedProfile = JSON.parse(localStorage.getItem(`profile_${user.email}`) || '{}');
         
         // Auto-fill email
         const emailInput = document.getElementById('customer-email');
@@ -256,20 +255,20 @@ renderCartItems();
 
         // Auto-fill name if available
         const nameInput = document.getElementById('customer-name');
-        if (nameInput && profile.name) {
-            nameInput.value = profile.name;
+        if (nameInput && savedProfile.name) {
+            nameInput.value = savedProfile.name;
         }
 
         // Auto-fill phone if available
         const phoneInput = document.getElementById('customer-phone');
-        if (phoneInput && profile.phone) {
-            phoneInput.value = profile.phone;
+        if (phoneInput && savedProfile.phone) {
+            phoneInput.value = savedProfile.phone;
         }
 
         // Auto-fill address if available
         const addressInput = document.getElementById('customer-address');
-        if (addressInput && profile.address) {
-            addressInput.value = profile.address;
+        if (addressInput && savedProfile.address) {
+            addressInput.value = savedProfile.address;
         }
     }
 })();
