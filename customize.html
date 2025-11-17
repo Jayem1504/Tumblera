@@ -46,9 +46,59 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-8">Customize Your Tumbler</h1>
         
-        <div class="grid lg:grid-cols-2 gap-8">
-            <!-- Customization Controls -->
-            <div class="space-y-6">
+        <div class="space-y-8">
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Preview and Color (Mobile: First, Desktop: Second) -->
+                <div class="lg:sticky lg:top-24 space-y-6 lg:order-2">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-eye text-amber-700 mr-2"></i>
+                            Live Preview
+                        </h2>
+                        <div class="relative flex items-center justify-center">
+                            <!-- Tumbler Preview -->
+                            <div id="tumbler-preview" class="relative inline-block">
+                                <!-- Tumbler Image Background -->
+                                <img id="tumbler-image" src="images/tumblera-white.png" alt="Tumbler" class="w-full h-auto object-contain" style="max-width: 400px; z-index: 1;">
+                                
+                                <!-- Customization Area (Restricted to tumbler body) -->
+                                <div class="absolute" style="top: 35%; left: 35%; width: 36%; height: 25%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
+                                    <!-- Custom Image -->
+                                    <img id="preview-image" src="" alt="" class="w-12 h-12 object-contain hidden mb-1">
+                                    
+                                    <!-- Custom Text -->
+                                    <div id="preview-text" class="text-center px-1" style="width: 100%; word-wrap: break-word; overflow-wrap: break-word;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4 text-center">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            This is a representation of how your tumbler will look
+                        </p>
+                    </div>
+
+                    <!-- Tumbler Color -->
+                    <div class="bg-white p-6 pb-[2.05rem] rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-fill-drip text-amber-700 mr-2"></i>
+                            Tumbler Color
+                        </h2>
+                        <div class="grid grid-cols-4 gap-3">
+                            <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300 hover:scale-105 transition-transform" style="background-color: #000000;" data-color="#000000" data-image="tumblera-black.png" title="Black"></button>
+                            <button class="tumbler-color-btn w-full h-12 rounded-lg border-4 border-amber-600 hover:scale-105 transition-transform" style="background-color: #ffffff;" data-color="#ffffff" data-image="tumblera-white.png" title="White"></button>
+                            <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300 hover:scale-105 transition-transform" style="background-color: #6b7280;" data-color="#6b7280" data-image="tumblera-gray.png" title="Gray"></button>
+                            <button class="tumbler-color-btn w-full h-12 rounded-lg border-4 border-gray-300 hover:scale-105 transition-transform" style="background-color: #3b82f6;" data-color="#3b82f6" data-image="tumblera-blue.png" title="Blue"></button>
+                            <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300 hover:scale-105 transition-transform" style="background-color: #ef4444;" data-color="#ef4444" data-image="tumblera-red.png" title="Red"></button>
+                            <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300 hover:scale-105 transition-transform" style="background-color: #8b5cf6;" data-color="#8b5cf6" data-image="tumblera-purple.png" title="Purple"></button>
+                            <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300 hover:scale-105 transition-transform" style="background-color: #ec4899;" data-color="#ec4899" data-image="tumblera-pink.png" title="Pink"></button>
+                            <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300 hover:scale-105 transition-transform" style="background-color: #10b981;" data-color="#10b981" data-image="tumblera-green.png" title="Green"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customization Controls (Mobile: Second, Desktop: First) -->
+                <div class="space-y-6 lg:order-1">
                 <!-- Text Customization -->
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h2 class="text-xl font-semibold mb-4 flex items-center">
@@ -166,69 +216,21 @@
                         </label>
                     </div>
                 </div>
-
-                <!-- Tumbler Color -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fas fa-fill-drip text-amber-700 mr-2"></i>
-                        Tumbler Color
-                    </h2>
-                    <div class="grid grid-cols-4 gap-3">
-                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #000000;" data-color="#000000" data-image="tumblera-black.png" title="Black"></button>
-                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-4 border-amber-600" style="background-color: #ffffff;" data-color="#ffffff" data-image="tumblera-white.png" title="White"></button>
-                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #6b7280;" data-color="#6b7280" data-image="tumblera-gray.png" title="Gray"></button>
-                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #3b82f6;" data-color="#3b82f6" data-image="tumblera-blue.png" title="Blue"></button>
-                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #ef4444;" data-color="#ef4444" data-image="tumblera-red.png" title="Red"></button>
-                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #8b5cf6;" data-color="#8b5cf6" data-image="tumblera-purple.png" title="Purple"></button>
-                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #ec4899;" data-color="#ec4899" data-image="tumblera-pink.png" title="Pink"></button>
-                        <button class="tumbler-color-btn w-full h-12 rounded-lg border-2 border-gray-300" style="background-color: #10b981;" data-color="#10b981" data-image="tumblera-green.png" title="Green"></button>
-                    </div>
-                </div>
-
-                <!-- Price and Add to Cart -->
-                <div class="bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 p-6 rounded-lg shadow-md text-gray-800">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-lg font-semibold">Price:</span>
-                        <span id="price-display" class="text-3xl font-bold">₱499</span>
-                    </div>
-                    <button id="add-to-cart" class="w-full bg-white text-amber-800 px-6 py-3 rounded-lg font-semibold text-lg hover:bg-stone-100 transition shadow-md">
-                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
-                    </button>
-                    <button id="reset-design" class="w-full mt-3 bg-transparent border-2 border-gray-800 text-gray-800 px-6 py-2 rounded-lg hover:bg-white transition">
-                        <i class="fas fa-redo mr-2"></i>Reset Design
-                    </button>
-                </div>
+            </div>
             </div>
 
-            <!-- Preview -->
-            <div class="lg:sticky lg:top-24">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fas fa-eye text-amber-700 mr-2"></i>
-                        Live Preview
-                    </h2>
-                    <div class="relative flex items-center justify-center">
-                        <!-- Tumbler Preview -->
-                        <div id="tumbler-preview" class="relative inline-block">
-                            <!-- Tumbler Image Background -->
-                            <img id="tumbler-image" src="images/tumblera-white.png" alt="Tumbler" class="w-full h-auto object-contain" style="max-width: 400px; z-index: 1;">
-                            
-                            <!-- Customization Area (Restricted to tumbler body) -->
-                            <div class="absolute" style="top: 35%; left: 35%; width: 36%; height: 25%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
-                                <!-- Custom Image -->
-                                <img id="preview-image" src="" alt="" class="w-12 h-12 object-contain hidden mb-1">
-                                
-                                <!-- Custom Text -->
-                                <div id="preview-text" class="text-center px-1" style="width: 100%; word-wrap: break-word; overflow-wrap: break-word;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500 mt-4 text-center">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        This is a representation of how your tumbler will look
-                    </p>
+            <!-- Price and Add to Cart - Full Width -->
+            <div class="bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 p-6 rounded-lg shadow-md text-gray-800">
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-lg font-semibold">Price:</p>
+                    <p id="price-display" class="text-4xl font-bold">₱499</p>
                 </div>
+                <button id="add-to-cart" class="w-full bg-white text-amber-800 px-6 py-3 rounded-lg font-semibold text-lg hover:bg-stone-100 transition shadow-md">
+                    <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                </button>
+                <button id="reset-design" class="w-full mt-3 bg-transparent border-2 border-gray-800 text-gray-800 px-6 py-2 rounded-lg hover:bg-white transition">
+                    <i class="fas fa-redo mr-2"></i>Reset Design
+                </button>
             </div>
         </div>
     </div>
