@@ -31,6 +31,14 @@
                         <i class="fas fa-shopping-cart"></i><span class="hidden sm:inline ml-1"> Cart</span>
                         <span id="cart-count" class="absolute -top-1 -right-1 bg-amber-700 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
                     </a>
+                    <div id="auth-links" class="flex items-center space-x-1 sm:space-x-2">
+                        <a href="login.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                            <i class="fas fa-sign-in-alt"></i><span class="hidden sm:inline ml-1"> Login</span>
+                        </a>
+                        <a href="signup.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                            <i class="fas fa-user-plus"></i><span class="hidden sm:inline ml-1"> Sign Up</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,7 +70,7 @@
                             <button 
                                 onclick="copyOrderId()" 
                                 id="copy-btn"
-                                class="px-3 py-1 bg-amber-600 text-white text-xs rounded hover:bg-blue-700 transition shrink-0"
+                                class="px-3 py-1 bg-amber-600 text-white text-xs rounded hover:bg-amber-700 transition shrink-0"
                                 title="Copy Order ID">
                                 <i class="fas fa-copy"></i>
                             </button>
@@ -117,13 +125,13 @@
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="orders.html" class="bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                <a href="orders.html" class="bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-700 transition">
                     <i class="fas fa-box mr-2"></i>Track My Order
                 </a>
                 <a href="index.html" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
                     <i class="fas fa-home mr-2"></i>Back to Home
                 </a>
-                <a href="customize.html" class="bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition">
+                <a href="customize.html" class="bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-stone-600 hover:via-stone-500 hover:to-stone-600 transition">
                     <i class="fas fa-plus mr-2"></i>Order Another
                 </a>
             </div>
