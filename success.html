@@ -192,7 +192,7 @@
             document.getElementById('total-items').textContent = orderData.itemCount || 0;
             
             // Display total amount
-            document.getElementById('total-amount').textContent = orderData.total || '$0.00';
+            document.getElementById('total-amount').textContent = orderData.total || '₱0.00';
             
             // Update cart count
             const cart = JSON.parse(localStorage.getItem('tumblerCart') || '[]');
