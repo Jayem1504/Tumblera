@@ -218,21 +218,38 @@ sizeRadios.forEach(radio => {
     });
 });
 
+// Capture preview as image
+async function capturePreviewSnapshot() {
+    return new Promise((resolve) => {
+        // Use html2canvas library to capture the preview
+        // If html2canvas is not available, we'll use a simpler approach
+        const previewElement = document.getElementById('tumbler-preview');
+        
+        // Simple approach: we'll reconstruct the preview later from saved data
+        // For now, just return null and we'll generate it dynamically
+        resolve(null);
+    });
+}
+
 // Add to cart functionality
-addToCartBtn.addEventListener('click', function() {
+addToCartBtn.addEventListener('click', async function() {
     // Validate that user has customized something
     if (!currentDesign.text && !currentDesign.imageData) {
         alert('Please add some text or upload an image to customize your tumbler!');
         return;
     }
     
+    // Capture the preview snapshot
+    const previewSnapshot = await capturePreviewSnapshot();
+    
     // Get existing cart
     const cart = JSON.parse(localStorage.getItem('tumblerCart') || '[]');
     
-    // Create cart item
+    // Create cart item with complete design data
     const cartItem = {
         id: Date.now(),
         design: { ...currentDesign },
+        previewSnapshot: previewSnapshot,
         price: currentDesign.price,
         size: currentDesign.size,
         timestamp: new Date().toISOString()

@@ -2,67 +2,61 @@
 // This ensures consistent preview appearance across cart, orders, and seller dashboard
 
 /**
- * Generates HTML for a tumbler preview matching the live preview in customize.html
+ * Generates HTML for a tumbler preview matching EXACTLY the live preview in customize.html
  * @param {Object} design - The design object containing all customization data
  * @param {string} size - Size identifier ('small', 'medium', 'large') or scale factor
  * @returns {string} HTML string for the tumbler preview
  */
 function generateTumblerPreview(design, size = 'medium') {
-    // Size configurations
+    // Size configurations - scaled versions of the original preview
     const sizeConfig = {
-        small: { width: 120, height: 200, imageScale: 0.4, textScale: 0.5 },
-        medium: { width: 200, height: 333, imageScale: 0.6, textScale: 0.7 },
-        large: { width: 300, height: 500, imageScale: 1, textScale: 1 }
+        small: { containerWidth: 120, containerHeight: 200, scale: 0.3 },
+        medium: { containerWidth: 200, containerHeight: 333, scale: 0.5 },
+        large: { containerWidth: 400, containerHeight: 500, scale: 1 }
     };
     
     const config = sizeConfig[size] || sizeConfig.medium;
+    const scale = config.scale;
     
-    // Calculate text orientation styles
-    let textOrientationStyle = '';
-    let textContainerStyle = 'width: 90%; word-wrap: break-word;';
+    // Calculate scaled dimensions for text and image
+    const fontSize = Math.round((design.fontSize || 24) * scale);
+    const imageSize = Math.round((design.imageSize || 48) * scale);
+    
+    // Text orientation styles - matching customize.js exactly
+    let textStyles = '';
+    let textContainerStyles = 'text-center px-1; width: 100%; word-wrap: break-word; overflow-wrap: break-word;';
     
     if (design.textOrientation === 'vertical-upright') {
-        textOrientationStyle = 'writing-mode: vertical-rl; text-orientation: upright; width: auto; display: inline-block;';
+        textStyles = 'writing-mode: vertical-rl; text-orientation: upright; width: auto; display: inline-block;';
     } else if (design.textOrientation === 'vertical-rotated') {
-        textOrientationStyle = 'writing-mode: horizontal-tb; transform: rotate(90deg); width: auto; display: inline-block; white-space: nowrap;';
+        textStyles = 'writing-mode: horizontal-tb; transform: rotate(90deg); width: auto; display: inline-block; white-space: nowrap;';
     } else {
-        textOrientationStyle = 'writing-mode: horizontal-tb; width: 100%; display: block;';
+        // horizontal (default)
+        textStyles = 'writing-mode: horizontal-tb; width: 100%; display: block;';
     }
     
-    // Calculate positions for image and text
-    const hasImage = design.imageData;
-    const imageSize = design.imageSize ? Math.round(design.imageSize * config.imageScale) : Math.round(48 * config.imageScale);
-    const fontSize = Math.round((design.fontSize || 24) * config.textScale);
-    
-    // Position text below image if image exists, otherwise center
-    const textTop = hasImage ? '65%' : '50%';
-    const imageTop = hasImage ? '35%' : '50%';
+    // Generate display styles for image
+    const imageDisplay = design.imageData ? 'block' : 'none';
+    const imageMargin = (design.imageData && design.text) ? '0 0 0.25rem 0' : '0';
     
     return `
-        <div class="relative" style="width: ${config.width}px; height: ${config.height}px; display: flex; align-items: center; justify-content: center;">
+        <div class="relative" style="width: ${config.containerWidth}px; height: ${config.containerHeight}px; display: flex; align-items: center; justify-content: center;">
             <!-- Tumbler Image Background -->
             <img src="images/${design.tumblerImage || 'tumblera-white.png'}" 
                  alt="Tumbler" 
-                 class="w-full h-full object-cover" 
-                 style="position: absolute; top: 0; left: 0; z-index: 1;">
+                 style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1;">
             
-            <!-- Customization Area (Restricted to tumbler body) -->
-            <div class="absolute" style="top: 35%; left: 35%; width: 36%; height: 25%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
-                ${hasImage ? `
-                    <!-- Custom Image -->
-                    <img src="${design.imageData}" 
-                         alt="Custom design" 
-                         class="object-contain" 
-                         style="width: ${imageSize}px; height: ${imageSize}px; position: absolute; top: ${imageTop}; left: 50%; transform: translateX(-50%);">
-                ` : ''}
+            <!-- Customization Area - EXACT same as customize.html -->
+            <div style="position: absolute; top: 35%; left: 35%; width: 36%; height: 25%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
+                <!-- Custom Image -->
+                <img src="${design.imageData || ''}" 
+                     alt="Custom design" 
+                     style="width: ${imageSize}px; height: ${imageSize}px; object-fit: contain; display: ${imageDisplay}; margin: ${imageMargin};">
                 
-                ${design.text ? `
-                    <!-- Custom Text -->
-                    <div class="text-center" 
-                         style="position: absolute; top: ${textTop}; left: 50%; transform: translate(-50%, -50%); ${textContainerStyle} font-family: ${design.font || 'Arial'}; font-size: ${fontSize}px; color: ${design.textColor || '#000000'}; ${textOrientationStyle}">
-                        ${design.text}
-                    </div>
-                ` : ''}
+                <!-- Custom Text -->
+                <div style="text-align: center; padding: 0 0.25rem; width: 100%; word-wrap: break-word; overflow-wrap: break-word; font-family: ${design.font || 'Arial'}; font-size: ${fontSize}px; color: ${design.textColor || '#000000'}; ${textStyles}">
+                    ${design.text || ''}
+                </div>
             </div>
         </div>
     `;
