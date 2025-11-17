@@ -14,23 +14,22 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <a href="index.html" class="flex items-center">
-                        <i class="fas fa-mug-hot text-blue-600 text-xl sm:text-2xl mr-1 sm:mr-2"></i>
-                        <span class="font-bold text-lg sm:text-xl text-gray-800">Tumblera</span>
+                        <img src="images/tumblera-word-only.jpg" alt="Tumblera" class="h-8 sm:h-10 object-contain">
                     </a>
                 </div>
                 <div class="flex items-center space-x-1 sm:space-x-2 md:space-x-4">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <a href="index.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
                         <i class="fas fa-home"></i><span class="hidden sm:inline ml-1"> Home</span>
                     </a>
-                    <a href="customize.html" class="text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <a href="customize.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
                         <i class="fas fa-paint-brush"></i><span class="hidden sm:inline ml-1"> Customize</span>
                     </a>
-                    <a href="orders.html" class="text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <a href="orders.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
                         <i class="fas fa-box"></i><span class="hidden sm:inline ml-1"> Track Orders</span>
                     </a>
-                    <a href="cart.html" class="relative text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <a href="cart.html" class="relative text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
                         <i class="fas fa-shopping-cart"></i><span class="hidden sm:inline ml-1"> Cart</span>
-                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-amber-700 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
                     </a>
                 </div>
             </div>
@@ -42,7 +41,7 @@
         <div class="max-w-md w-full space-y-8">
             <!-- Header -->
             <div class="text-center">
-                <i class="fas fa-user-plus text-blue-600 text-6xl mb-4"></i>
+                <i class="fas fa-user-plus text-amber-800 text-6xl mb-4"></i>
                 <h2 class="text-3xl font-bold text-gray-900">Create Account</h2>
                 <p class="mt-2 text-sm text-gray-600">
                     Join Tumblera to track your orders and save your designs
@@ -72,7 +71,7 @@
                                 <i class="fas fa-envelope text-gray-400"></i>
                             </div>
                             <input type="email" id="email" required
-                                   class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                   class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                                    placeholder="you@example.com">
                         </div>
                     </div>
@@ -87,7 +86,7 @@
                                 <i class="fas fa-lock text-gray-400"></i>
                             </div>
                             <input type="password" id="password" required minlength="6"
-                                   class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                   class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                                    placeholder="••••••••">
                             <button type="button" id="toggle-password" class="absolute inset-y-0 right-0 pr-3 flex items-center">
                                 <i class="fas fa-eye text-gray-400 hover:text-gray-600"></i>
@@ -106,7 +105,7 @@
                                 <i class="fas fa-lock text-gray-400"></i>
                             </div>
                             <input type="password" id="confirm-password" required minlength="6"
-                                   class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                   class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                                    placeholder="••••••••">
                         </div>
                     </div>
@@ -114,15 +113,15 @@
                     <!-- Terms and Conditions -->
                     <div class="flex items-start">
                         <input type="checkbox" id="terms" required
-                               class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                               class="mt-1 h-4 w-4 text-amber-800 focus:ring-amber-500 border-gray-300 rounded">
                         <label for="terms" class="ml-2 block text-sm text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:text-blue-500">Terms and Conditions</a> and <a href="#" class="text-blue-600 hover:text-blue-500">Privacy Policy</a>
+                            I agree to the <a href="#" onclick="showTerms(event)" class="text-amber-800 hover:text-amber-600 underline">Terms and Conditions</a> and <a href="#" onclick="showPrivacy(event)" class="text-amber-800 hover:text-amber-600 underline">Privacy Policy</a>
                         </label>
                     </div>
 
                     <!-- Submit Button -->
                     <button type="submit" id="signup-btn"
-                            class="w-full flex justify-center items-center px-4 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
+                            class="w-full flex justify-center items-center px-4 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 hover:from-stone-600 hover:via-stone-500 hover:to-stone-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition">
                         <i class="fas fa-user-plus mr-2"></i>
                         Create Account
                     </button>
@@ -144,7 +143,7 @@
                 <div class="mt-6 text-center">
                     <p class="text-sm text-gray-600">
                         Already have an account?
-                        <a href="login.html" class="font-medium text-blue-600 hover:text-blue-500">
+                        <a href="login.html" class="font-medium text-amber-800 hover:text-blue-500">
                             Sign in
                         </a>
                     </p>
@@ -252,6 +251,78 @@
                 window.location.href = 'index.html';
             }
         })();
+
+        // Modal functions for Terms and Privacy
+        function showTerms(event) {
+            event.preventDefault();
+            const modal = document.getElementById('policy-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            title.textContent = 'Terms and Conditions';
+            content.innerHTML = `
+                <div class="space-y-3 text-sm text-gray-700">
+                    <p><strong>1. Account Creation:</strong> By creating an account, you agree to provide accurate and complete information. You are responsible for maintaining the security of your account.</p>
+                    <p><strong>2. Product Orders:</strong> All orders are subject to availability. Prices are in Philippine Peso (₱) and include customization fees. Orders are final once placed.</p>
+                    <p><strong>3. Customization:</strong> You retain ownership of uploaded designs. We reserve the right to refuse designs that violate copyright or contain inappropriate content.</p>
+                    <p><strong>4. Payment:</strong> All payments are cash on delivery (COD). Shipping fee of ₱59 applies to all orders.</p>
+                    <p><strong>5. Cancellation:</strong> Orders can be cancelled within 24 hours of placement. After production begins, cancellations are not accepted.</p>
+                    <p><strong>6. Limitation of Liability:</strong> Tumblera is not liable for delays, damages during shipping, or issues arising from inaccurate customer information.</p>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showPrivacy(event) {
+            event.preventDefault();
+            const modal = document.getElementById('policy-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            title.textContent = 'Privacy Policy';
+            content.innerHTML = `
+                <div class="space-y-3 text-sm text-gray-700">
+                    <p><strong>Information We Collect:</strong> We collect your name, email, phone number, shipping address, and uploaded designs for order fulfillment.</p>
+                    <p><strong>How We Use Your Information:</strong> Your information is used solely to process orders, communicate about your order status, and improve our services.</p>
+                    <p><strong>Data Storage:</strong> Your data is securely stored using Supabase cloud services with industry-standard encryption.</p>
+                    <p><strong>Data Sharing:</strong> We do not sell or share your personal information with third parties, except as required for order delivery.</p>
+                    <p><strong>Your Rights:</strong> You have the right to access, correct, or delete your personal information at any time by contacting us.</p>
+                    <p><strong>Cookies:</strong> We use local storage to maintain your cart and session. No tracking cookies are used.</p>
+                    <p><strong>Contact:</strong> For privacy concerns, please contact us through our support channels.</p>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('policy-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
     </script>
+
+    <!-- Modal for Terms and Privacy -->
+    <div id="policy-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <h3 id="modal-title" class="text-xl font-bold text-white"></h3>
+                    <button onclick="closeModal()" class="text-white hover:text-gray-200 transition">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="modal-content" class="px-6 py-4 overflow-y-auto max-h-[calc(80vh-80px)]">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+            <div class="px-6 py-4 bg-gray-50 border-t">
+                <button onclick="closeModal()" class="w-full bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg font-medium transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

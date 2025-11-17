@@ -8,7 +8,9 @@ let currentDesign = {
     textColor: '#000000',
     tumblerColor: '#ffffff',
     image: null,
-    imageData: null
+    imageData: null,
+    size: '350',
+    price: 499
 };
 
 // DOM elements
@@ -22,6 +24,8 @@ const removeImageBtn = document.getElementById('remove-image');
 const addToCartBtn = document.getElementById('add-to-cart');
 const resetDesignBtn = document.getElementById('reset-design');
 const tumblerColorBtns = document.querySelectorAll('.tumbler-color-btn');
+const sizeRadios = document.querySelectorAll('input[name="size"]');
+const priceDisplay = document.getElementById('price-display');
 
 // Preview elements
 const tumblerPreview = document.getElementById('tumbler-preview');
@@ -147,6 +151,27 @@ tumblerColorBtns.forEach(btn => {
     });
 });
 
+// Size selection listeners
+sizeRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+        currentDesign.size = this.value;
+        currentDesign.price = parseInt(this.dataset.price);
+        priceDisplay.textContent = '₱' + currentDesign.price;
+        
+        // Update visual selection
+        sizeRadios.forEach(r => {
+            const label = r.closest('label');
+            if (r.checked) {
+                label.classList.remove('border-gray-300');
+                label.classList.add('border-blue-600', 'bg-blue-50');
+            } else {
+                label.classList.remove('border-blue-600', 'bg-blue-50');
+                label.classList.add('border-gray-300');
+            }
+        });
+    });
+});
+
 // Add to cart functionality
 addToCartBtn.addEventListener('click', function() {
     // Validate that user has customized something
@@ -162,7 +187,8 @@ addToCartBtn.addEventListener('click', function() {
     const cartItem = {
         id: Date.now(),
         design: { ...currentDesign },
-        price: 24.99,
+        price: currentDesign.price,
+        size: currentDesign.size,
         timestamp: new Date().toISOString()
     };
     

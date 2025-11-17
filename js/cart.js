@@ -12,8 +12,7 @@ const checkoutFormContainer = document.getElementById('checkout-form-container')
 const cartContainer = document.getElementById('cart-container');
 
 // Constants
-const SHIPPING_COST = 5.00;
-const ITEM_PRICE = 24.99;
+const SHIPPING_COST = 59;
 
 // Update cart count
 function updateCartCount() {
@@ -26,7 +25,7 @@ function updateCartCount() {
 
 // Calculate totals
 function calculateTotals(cart) {
-    const subtotal = cart.length * ITEM_PRICE;
+    const subtotal = cart.reduce((sum, item) => sum + (item.price || 499), 0);
     const total = subtotal + (cart.length > 0 ? SHIPPING_COST : 0);
     return { subtotal, total };
 }
@@ -109,9 +108,13 @@ function renderCartItems() {
                     </div>
                     
                     <div class="mt-4 pt-4 border-t">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Size:</span>
+                            <span class="font-semibold">${item.size || '350'}ml</span>
+                        </div>
                         <div class="flex justify-between items-center">
                             <span class="text-gray-600">Price:</span>
-                            <span class="text-2xl font-bold text-blue-600">$${item.price.toFixed(2)}</span>
+                            <span class="text-2xl font-bold text-amber-800">₱${item.price || 499}</span>
                         </div>
                     </div>
                 </div>
@@ -121,8 +124,8 @@ function renderCartItems() {
     
     // Update totals
     const { subtotal, total } = calculateTotals(cart);
-    subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-    totalElement.textContent = `$${total.toFixed(2)}`;
+    subtotalElement.textContent = `₱${subtotal}`;
+    totalElement.textContent = `₱${total}`;
 }
 
 // Remove item from cart

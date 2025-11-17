@@ -14,23 +14,22 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <a href="index.html" class="flex items-center">
-                        <i class="fas fa-mug-hot text-blue-600 text-xl sm:text-2xl mr-1 sm:mr-2"></i>
-                        <span class="font-bold text-lg sm:text-xl text-gray-800">Tumblera</span>
+                        <img src="images/tumblera-word-only.jpg" alt="Tumblera" class="h-8 sm:h-10 object-contain">
                     </a>
                 </div>
                 <div class="flex items-center space-x-1 sm:space-x-2 md:space-x-4">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <a href="index.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
                         <i class="fas fa-home"></i><span class="hidden sm:inline ml-1"> Home</span>
                     </a>
-                    <a href="customize.html" class="text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <a href="customize.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
                         <i class="fas fa-paint-brush"></i><span class="hidden sm:inline ml-1"> Customize</span>
                     </a>
-                    <a href="orders.html" class="text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <a href="orders.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
                         <i class="fas fa-box"></i><span class="hidden sm:inline ml-1"> Track Orders</span>
                     </a>
-                    <a href="cart.html" class="relative text-gray-700 hover:text-blue-600 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                    <a href="cart.html" class="relative text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
                         <i class="fas fa-shopping-cart"></i><span class="hidden sm:inline ml-1"> Cart</span>
-                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-amber-700 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
                     </a>
                 </div>
             </div>
@@ -59,11 +58,11 @@
                     <div class="flex flex-col gap-1">
                         <span class="text-gray-600 text-sm">Order ID:</span>
                         <div class="flex items-center gap-2 bg-white p-2 rounded border">
-                            <span id="order-number" class="font-mono text-xs text-blue-600 break-all flex-1">Loading...</span>
+                            <span id="order-number" class="font-mono text-xs text-amber-800 break-all flex-1">Loading...</span>
                             <button 
                                 onclick="copyOrderId()" 
                                 id="copy-btn"
-                                class="px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition shrink-0"
+                                class="px-3 py-1 bg-amber-600 text-white text-xs rounded hover:bg-blue-700 transition shrink-0"
                                 title="Copy Order ID">
                                 <i class="fas fa-copy"></i>
                             </button>
@@ -82,7 +81,7 @@
                     </div>
                     <div class="flex justify-between border-t pt-2 mt-2">
                         <span class="text-gray-600 text-lg">Total Amount:</span>
-                        <span id="total-amount" class="font-bold text-lg text-blue-600">Loading...</span>
+                        <span id="total-amount" class="font-bold text-lg text-amber-800">Loading...</span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-600">Payment Method:</span>
@@ -94,23 +93,23 @@
             </div>
 
             <!-- Next Steps -->
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8 text-left">
+            <div class="bg-amber-50 border border-blue-200 rounded-lg p-6 mb-8 text-left">
                 <h3 class="font-semibold text-blue-900 mb-3">What happens next?</h3>
                 <ul class="space-y-2 text-sm text-blue-800">
                     <li class="flex items-start">
-                        <i class="fas fa-envelope text-blue-600 mt-1 mr-3"></i>
+                        <i class="fas fa-envelope text-amber-800 mt-1 mr-3"></i>
                         <span>You'll receive a confirmation email with your order details</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-paint-brush text-blue-600 mt-1 mr-3"></i>
+                        <i class="fas fa-paint-brush text-amber-800 mt-1 mr-3"></i>
                         <span>We'll start customizing your tumbler(s) according to your design</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-shipping-fast text-blue-600 mt-1 mr-3"></i>
+                        <i class="fas fa-shipping-fast text-amber-800 mt-1 mr-3"></i>
                         <span>Your order will be delivered within 5-7 business days</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-money-bill-wave text-blue-600 mt-1 mr-3"></i>
+                        <i class="fas fa-money-bill-wave text-amber-800 mt-1 mr-3"></i>
                         <span>Pay cash when you receive your order</span>
                     </li>
                 </ul>
@@ -118,13 +117,13 @@
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="orders.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                <a href="orders.html" class="bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
                     <i class="fas fa-box mr-2"></i>Track My Order
                 </a>
                 <a href="index.html" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
                     <i class="fas fa-home mr-2"></i>Back to Home
                 </a>
-                <a href="customize.html" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition">
+                <a href="customize.html" class="bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition">
                     <i class="fas fa-plus mr-2"></i>Order Another
                 </a>
             </div>
@@ -156,12 +155,12 @@
                 const originalHTML = copyBtn.innerHTML;
                 copyBtn.innerHTML = '<i class="fas fa-check"></i>';
                 copyBtn.classList.add('bg-green-600');
-                copyBtn.classList.remove('bg-blue-600');
+                copyBtn.classList.remove('bg-amber-600');
                 
                 setTimeout(() => {
                     copyBtn.innerHTML = originalHTML;
                     copyBtn.classList.remove('bg-green-600');
-                    copyBtn.classList.add('bg-blue-600');
+                    copyBtn.classList.add('bg-amber-600');
                 }, 2000);
             }).catch(err => {
                 alert('Failed to copy order ID');
