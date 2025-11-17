@@ -386,12 +386,18 @@ export async function updateNavbar() {
     const authLinks = document.getElementById('auth-links');
     
     if (authLinks) {
+        // Check current page to highlight active link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        
         if (user) {
+            // Determine which link should be active
+            const profileActive = currentPage === 'profile.html' ? 'border-amber-800' : 'border-transparent';
+            
             authLinks.innerHTML = `
-                <a href="profile.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                <a href="profile.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base border-b-2 ${profileActive}">
                     <i class="fas fa-user"></i><span class="hidden sm:inline ml-1"> Profile</span>
                 </a>
-                <button id="logout-btn" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                <button id="logout-btn" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base border-b-2 border-transparent">
                     <i class="fas fa-sign-out-alt"></i><span class="hidden sm:inline ml-1"> Logout</span>
                 </button>
             `;
@@ -404,11 +410,15 @@ export async function updateNavbar() {
                 }
             });
         } else {
+            // Determine which link should be active for non-logged-in users
+            const loginActive = currentPage === 'login.html' ? 'border-amber-800' : 'border-transparent';
+            const signupActive = currentPage === 'signup.html' ? 'border-amber-800' : 'border-transparent';
+            
             authLinks.innerHTML = `
-                <a href="login.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                <a href="login.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base border-b-2 ${loginActive}">
                     <i class="fas fa-sign-in-alt"></i><span class="hidden sm:inline ml-1"> Login</span>
                 </a>
-                <a href="signup.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base">
+                <a href="signup.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base border-b-2 ${signupActive}">
                     <i class="fas fa-user-plus"></i><span class="hidden sm:inline ml-1"> Sign Up</span>
                 </a>
             `;
