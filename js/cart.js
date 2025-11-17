@@ -52,14 +52,7 @@ function renderCartItems() {
                 <!-- Preview -->
                 <div class="md:w-1/3">
                     <div class="relative bg-gray-100 rounded-lg p-4 flex items-center justify-center" style="min-height: 250px;">
-                        <div class="relative" style="width: 120px; height: 200px; background-color: ${item.design.tumblerColor}; border-radius: 8px 8px 20px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                            ${item.design.imageData ? `
-                                <img src="${item.design.imageData}" alt="Custom design" class="absolute w-16 h-16 object-contain" style="top: 30%; left: 50%; transform: translateX(-50%);">
-                            ` : ''}
-                            <div class="absolute text-center px-2" style="top: ${item.design.imageData ? '70%' : '50%'}; left: 50%; transform: translate(-50%, -50%); width: 90%; word-wrap: break-word; font-family: ${item.design.font}; font-size: ${Math.min(item.design.fontSize * 0.5, 14)}px; color: ${item.design.textColor};">
-                                ${item.design.text || ''}
-                            </div>
-                        </div>
+                        ${generateTumblerPreview(item.design, 'small')}
                     </div>
                 </div>
                 
@@ -86,6 +79,12 @@ function renderCartItems() {
                             <span class="text-gray-600 font-medium w-24">Font:</span>
                             <span class="text-gray-800">${item.design.font}</span>
                         </div>
+                        ${item.design.textOrientation && item.design.textOrientation !== 'horizontal' ? `
+                            <div class="flex items-center">
+                                <span class="text-gray-600 font-medium w-24">Orientation:</span>
+                                <span class="text-gray-800">${item.design.textOrientation === 'vertical-upright' ? 'Vertical (Upright)' : 'Vertical (90°)'}</span>
+                            </div>
+                        ` : ''}
                         <div class="flex items-center">
                             <span class="text-gray-600 font-medium w-24">Text Color:</span>
                             <span class="flex items-center">
@@ -93,16 +92,10 @@ function renderCartItems() {
                                 <span class="text-gray-800">${item.design.textColor}</span>
                             </span>
                         </div>
-                        <div class="flex items-center">
-                            <span class="text-gray-600 font-medium w-24">Tumbler Color:</span>
-                            <span class="flex items-center">
-                                <span class="inline-block w-5 h-5 rounded border border-gray-300 mr-2" style="background-color: ${item.design.tumblerColor};"></span>
-                            </span>
-                        </div>
                         ${item.design.imageData ? `
                             <div class="flex items-center">
                                 <span class="text-gray-600 font-medium w-24">Image:</span>
-                                <span class="text-green-600"><i class="fas fa-check-circle mr-1"></i>Uploaded</span>
+                                <span class="text-green-600"><i class="fas fa-check-circle mr-1"></i>Uploaded (${item.design.imageSize || 48}px)</span>
                             </div>
                         ` : ''}
                     </div>
