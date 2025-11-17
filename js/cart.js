@@ -192,7 +192,7 @@ checkoutForm.addEventListener('submit', async function(e) {
             // Store order info in session storage for success page
             sessionStorage.setItem('lastOrder', JSON.stringify({
                 itemCount: cart.length,
-                total: `$${total.toFixed(2)}`,
+                total: `₱${total.toFixed(2)}`,
                 customerName: formData.name,
                 orderId: result.order.id
             }));
