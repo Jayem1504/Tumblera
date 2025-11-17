@@ -6,8 +6,47 @@
     <title>Tumblera - Custom Tumblers</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-image: url('images/bg1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }
+        .cta-section {
+            background-image: url('images/bg3.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(120, 113, 108, 0.75), rgba(168, 162, 158, 0.7), rgba(120, 113, 108, 0.75));
+            z-index: 0;
+        }
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 min-h-full flex flex-col">
+<body class="min-h-full flex flex-col">
     <!-- Navigation -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
@@ -114,8 +153,8 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 text-gray-800 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section class="cta-section text-gray-800 py-16">
+        <div class="cta-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-bold mb-4">Ready to Create Your Tumbler?</h2>
             <p class="text-xl mb-8">Start designing now and get your personalized tumbler delivered to your door!</p>
             <a href="customize.html" class="bg-white text-amber-800 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-stone-100 transition inline-block shadow-md">
