@@ -8,10 +8,10 @@
  * @returns {string} HTML string for the tumbler preview
  */
 function generateTumblerPreview(design, size = 'medium') {
-    // Size configurations - scaled versions of the original preview
+    // Size configurations - maintaining proper aspect ratio (4:5 ratio like original)
     const sizeConfig = {
-        small: { containerWidth: 120, containerHeight: 200, scale: 0.3 },
-        medium: { containerWidth: 200, containerHeight: 333, scale: 0.5 },
+        small: { containerWidth: 160, containerHeight: 200, scale: 0.4 },
+        medium: { containerWidth: 240, containerHeight: 300, scale: 0.6 },
         large: { containerWidth: 400, containerHeight: 500, scale: 1 }
     };
     
@@ -44,7 +44,7 @@ function generateTumblerPreview(design, size = 'medium') {
             <!-- Tumbler Image Background -->
             <img src="images/${design.tumblerImage || 'tumblera-white.png'}" 
                  alt="Tumbler" 
-                 style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1;">
+                 style="width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; z-index: 1;">
             
             <!-- Customization Area - EXACT same as customize.html -->
             <div style="position: absolute; top: 35%; left: 35%; width: 36%; height: 25%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">

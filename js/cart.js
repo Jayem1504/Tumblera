@@ -51,7 +51,7 @@ function renderCartItems() {
             <div class="flex flex-col md:flex-row gap-6">
                 <!-- Preview -->
                 <div class="md:w-1/3">
-                    <div class="relative bg-gray-100 rounded-lg p-4 flex items-center justify-center" style="min-height: 250px;">
+                    <div class="relative bg-gray-100 rounded-lg p-4 flex items-center justify-center">
                         ${generateTumblerPreview(item.design, 'small')}
                     </div>
                 </div>
