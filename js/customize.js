@@ -7,6 +7,7 @@ let currentDesign = {
     fontSize: 24,
     textColor: '#000000',
     tumblerColor: '#ffffff',
+    tumblerImage: 'tumblera-white.png',
     image: null,
     imageData: null,
     size: '350',
@@ -29,6 +30,7 @@ const priceDisplay = document.getElementById('price-display');
 
 // Preview elements
 const tumblerPreview = document.getElementById('tumbler-preview');
+const tumblerImage = document.getElementById('tumbler-image');
 const previewText = document.getElementById('preview-text');
 const previewImage = document.getElementById('preview-image');
 
@@ -47,13 +49,6 @@ function updatePreviewText() {
     previewText.style.fontFamily = currentDesign.font;
     previewText.style.fontSize = currentDesign.fontSize + 'px';
     previewText.style.color = currentDesign.textColor;
-    
-    // Adjust position based on whether image exists
-    if (currentDesign.imageData) {
-        previewText.style.top = '70%';
-    } else {
-        previewText.style.top = '50%';
-    }
 }
 
 // Update preview image
@@ -69,9 +64,9 @@ function updatePreviewImage() {
     }
 }
 
-// Update tumbler color
+// Update tumbler color and image
 function updateTumblerColor() {
-    tumblerPreview.style.backgroundColor = currentDesign.tumblerColor;
+    tumblerImage.src = 'images/' + currentDesign.tumblerImage;
 }
 
 // Text input listener
@@ -137,16 +132,17 @@ tumblerColorBtns.forEach(btn => {
     btn.addEventListener('click', function() {
         // Remove active class from all buttons
         tumblerColorBtns.forEach(b => {
-            b.classList.remove('border-blue-600', 'border-4');
+            b.classList.remove('border-amber-600', 'border-4');
             b.classList.add('border-gray-300', 'border-2');
         });
         
         // Add active class to clicked button
         this.classList.remove('border-gray-300', 'border-2');
-        this.classList.add('border-blue-600', 'border-4');
+        this.classList.add('border-amber-600', 'border-4');
         
-        // Update color
+        // Update color and image
         currentDesign.tumblerColor = this.dataset.color;
+        currentDesign.tumblerImage = this.dataset.image;
         updateTumblerColor();
     });
 });
@@ -202,13 +198,13 @@ addToCartBtn.addEventListener('click', function() {
     // Show success message
     const originalText = addToCartBtn.innerHTML;
     addToCartBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Added to Cart!';
-    addToCartBtn.classList.remove('bg-white', 'text-blue-600');
+    addToCartBtn.classList.remove('bg-white', 'text-amber-800');
     addToCartBtn.classList.add('bg-green-500', 'text-white');
     
     setTimeout(() => {
         addToCartBtn.innerHTML = originalText;
         addToCartBtn.classList.remove('bg-green-500', 'text-white');
-        addToCartBtn.classList.add('bg-white', 'text-blue-600');
+        addToCartBtn.classList.add('bg-white', 'text-amber-800');
         
         // Ask user if they want to go to cart or continue
         if (confirm('Item added to cart! Would you like to view your cart?')) {
@@ -227,8 +223,11 @@ resetDesignBtn.addEventListener('click', function() {
             fontSize: 24,
             textColor: '#000000',
             tumblerColor: '#ffffff',
+            tumblerImage: 'tumblera-white.png',
             image: null,
-            imageData: null
+            imageData: null,
+            size: '350',
+            price: 499
         };
         
         // Reset inputs
@@ -238,14 +237,18 @@ resetDesignBtn.addEventListener('click', function() {
         textColor.value = '#000000';
         textColorHex.value = '#000000';
         imageUpload.value = '';
+        priceDisplay.textContent = '₱499';
         
-        // Reset tumbler color buttons
+        // Reset size selection
+        sizeRadios[0].checked = true;
+        
+        // Reset tumbler color buttons (White is now second button)
         tumblerColorBtns.forEach((btn, index) => {
-            if (index === 0) {
+            if (index === 1) { // White button is now at index 1
                 btn.classList.remove('border-gray-300', 'border-2');
-                btn.classList.add('border-blue-600', 'border-4');
+                btn.classList.add('border-amber-600', 'border-4');
             } else {
-                btn.classList.remove('border-blue-600', 'border-4');
+                btn.classList.remove('border-amber-600', 'border-4');
                 btn.classList.add('border-gray-300', 'border-2');
             }
         });
