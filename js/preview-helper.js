@@ -40,11 +40,12 @@ function generateTumblerPreview(design, size = 'medium') {
     const imageMargin = (design.imageData && design.text) ? '0 0 0.25rem 0' : '0';
     
     return `
-        <div class="relative" style="width: ${config.containerWidth}px; height: ${config.containerHeight}px; display: flex; align-items: center; justify-content: center;">
+        <div class="relative inline-block">
             <!-- Tumbler Image Background -->
             <img src="images/${design.tumblerImage || 'tumblera-white.png'}" 
                  alt="Tumbler" 
-                 style="width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; z-index: 1;">
+                 class="w-full h-auto object-contain"
+                 style="max-width: ${config.containerWidth}px; z-index: 1;">
             
             <!-- Customization Area - EXACT same as customize.html -->
             <div style="position: absolute; top: 35%; left: 35%; width: 36%; height: 25%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
