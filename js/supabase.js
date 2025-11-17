@@ -387,11 +387,13 @@ export async function updateNavbar() {
     
     if (authLinks) {
         // Check current page to highlight active link
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const pathname = window.location.pathname;
+        const currentPage = pathname.substring(pathname.lastIndexOf('/') + 1) || 'index.html';
         
         if (user) {
             // Determine which link should be active
-            const profileActive = currentPage === 'profile.html' ? 'border-amber-800' : 'border-transparent';
+            const isProfilePage = currentPage === 'profile.html' || pathname.endsWith('profile.html');
+            const profileActive = isProfilePage ? 'border-amber-800' : 'border-transparent';
             
             authLinks.innerHTML = `
                 <a href="profile.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base border-b-2 ${profileActive}">
@@ -411,8 +413,10 @@ export async function updateNavbar() {
             });
         } else {
             // Determine which link should be active for non-logged-in users
-            const loginActive = currentPage === 'login.html' ? 'border-amber-800' : 'border-transparent';
-            const signupActive = currentPage === 'signup.html' ? 'border-amber-800' : 'border-transparent';
+            const isLoginPage = currentPage === 'login.html' || pathname.endsWith('login.html');
+            const isSignupPage = currentPage === 'signup.html' || pathname.endsWith('signup.html');
+            const loginActive = isLoginPage ? 'border-amber-800' : 'border-transparent';
+            const signupActive = isSignupPage ? 'border-amber-800' : 'border-transparent';
             
             authLinks.innerHTML = `
                 <a href="login.html" class="text-gray-700 hover:text-amber-800 px-2 sm:px-3 py-2 font-medium text-sm sm:text-base border-b-2 ${loginActive}">
