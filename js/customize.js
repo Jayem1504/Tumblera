@@ -8,8 +8,10 @@ let currentDesign = {
     textColor: '#000000',
     tumblerColor: '#ffffff',
     tumblerImage: 'tumblera-white.png',
+    textOrientation: 'horizontal',
     image: null,
     imageData: null,
+    imageSize: 48,
     size: '350',
     price: 499
 };
@@ -20,7 +22,11 @@ const fontSelect = document.getElementById('font-select');
 const fontSize = document.getElementById('font-size');
 const textColor = document.getElementById('text-color');
 const textColorHex = document.getElementById('text-color-hex');
+const textOrientationRadios = document.querySelectorAll('input[name="text-orientation"]');
 const imageUpload = document.getElementById('image-upload');
+const imageSize = document.getElementById('image-size');
+const imageSizeValue = document.getElementById('image-size-value');
+const imageSizeContainer = document.getElementById('image-size-container');
 const removeImageBtn = document.getElementById('remove-image');
 const addToCartBtn = document.getElementById('add-to-cart');
 const resetDesignBtn = document.getElementById('reset-design');
@@ -49,18 +55,45 @@ function updatePreviewText() {
     previewText.style.fontFamily = currentDesign.font;
     previewText.style.fontSize = currentDesign.fontSize + 'px';
     previewText.style.color = currentDesign.textColor;
+    
+    // Handle text orientation
+    if (currentDesign.textOrientation === 'vertical-upright') {
+        previewText.style.writingMode = 'vertical-rl';
+        previewText.style.textOrientation = 'upright';
+        previewText.style.transform = 'none';
+        previewText.style.width = 'auto';
+        previewText.style.display = 'inline-block';
+    } else if (currentDesign.textOrientation === 'vertical-rotated') {
+        previewText.style.writingMode = 'horizontal-tb';
+        previewText.style.textOrientation = 'mixed';
+        previewText.style.transform = 'rotate(90deg)';
+        previewText.style.width = 'auto';
+        previewText.style.display = 'inline-block';
+        previewText.style.whiteSpace = 'nowrap';
+    } else {
+        previewText.style.writingMode = 'horizontal-tb';
+        previewText.style.textOrientation = 'mixed';
+        previewText.style.transform = 'none';
+        previewText.style.width = '100%';
+        previewText.style.display = 'block';
+        previewText.style.whiteSpace = 'normal';
+    }
 }
 
 // Update preview image
 function updatePreviewImage() {
     if (currentDesign.imageData) {
         previewImage.src = currentDesign.imageData;
+        previewImage.style.width = currentDesign.imageSize + 'px';
+        previewImage.style.height = currentDesign.imageSize + 'px';
         previewImage.classList.remove('hidden');
         removeImageBtn.classList.remove('hidden');
+        imageSizeContainer.classList.remove('hidden');
     } else {
         previewImage.src = '';
         previewImage.classList.add('hidden');
         removeImageBtn.classList.add('hidden');
+        imageSizeContainer.classList.add('hidden');
     }
 }
 
@@ -103,6 +136,14 @@ textColorHex.addEventListener('input', function(e) {
     }
 });
 
+// Text orientation listeners
+textOrientationRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+        currentDesign.textOrientation = this.value;
+        updatePreviewText();
+    });
+});
+
 // Image upload listener
 imageUpload.addEventListener('change', function(e) {
     const file = e.target.files[0];
@@ -122,9 +163,18 @@ imageUpload.addEventListener('change', function(e) {
 removeImageBtn.addEventListener('click', function() {
     currentDesign.image = null;
     currentDesign.imageData = null;
+    currentDesign.imageSize = 48;
     imageUpload.value = '';
+    imageSize.value = 48;
+    imageSizeValue.textContent = 48;
     updatePreviewImage();
-    updatePreviewText(); // Reposition text
+});
+
+// Image size listener
+imageSize.addEventListener('input', function(e) {
+    currentDesign.imageSize = parseInt(e.target.value);
+    imageSizeValue.textContent = currentDesign.imageSize;
+    updatePreviewImage();
 });
 
 // Tumbler color listeners
@@ -224,8 +274,10 @@ resetDesignBtn.addEventListener('click', function() {
             textColor: '#000000',
             tumblerColor: '#ffffff',
             tumblerImage: 'tumblera-white.png',
+            textOrientation: 'horizontal',
             image: null,
             imageData: null,
+            imageSize: 48,
             size: '350',
             price: 499
         };
@@ -236,7 +288,10 @@ resetDesignBtn.addEventListener('click', function() {
         fontSize.value = 24;
         textColor.value = '#000000';
         textColorHex.value = '#000000';
+        textOrientationRadios[0].checked = true;
         imageUpload.value = '';
+        imageSize.value = 48;
+        imageSizeValue.textContent = 48;
         priceDisplay.textContent = '₱499';
         
         // Reset size selection
