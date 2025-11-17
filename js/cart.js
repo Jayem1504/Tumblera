@@ -189,10 +189,37 @@ checkoutForm.addEventListener('submit', async function(e) {
         if (result.success) {
             console.log('✅ Order saved successfully!', result.order);
             
+            // Send order confirmation email to customer
+            try {
+                const emailModule = await import('./email-service.js');
+                const emailResult = await emailModule.sendOrderConfirmationEmail({
+                    customer: {
+                        name: formData.name,
+                        email: formData.email,
+                        phone: formData.phone,
+                        address: formData.address,
+                        notes: formData.notes
+                    },
+                    items: cart,
+                    orderId: result.order.id,
+                    subtotal: subtotal,
+                    shipping: SHIPPING_COST,
+                    total: total
+                });
+                
+                if (emailResult.success) {
+                    console.log('✅ Order confirmation email sent to customer');
+                } else {
+                    console.warn('⚠️ Email notification failed, but order was saved:', emailResult.error);
+                }
+            } catch (emailError) {
+                console.warn('⚠️ Email service error (order still saved):', emailError);
+            }
+            
             // Store order info in session storage for success page
             sessionStorage.setItem('lastOrder', JSON.stringify({
                 itemCount: cart.length,
-                total: `$${total.toFixed(2)}`,
+                total: `₱${total}`,
                 customerName: formData.name,
                 orderId: result.order.id
             }));
